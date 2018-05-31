@@ -57,7 +57,18 @@
         
         >
       </el-table-column>
-      
+      <el-table-column
+        prop="domain1"
+        label="域名2"
+        
+        >
+      </el-table-column>
+      <el-table-column
+        prop="remark"
+        label="备注"
+        
+        >
+      </el-table-column>
       
     </el-table>
     <el-pagination

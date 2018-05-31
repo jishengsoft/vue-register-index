@@ -125,6 +125,7 @@
     </div>
 </template>
 <script>
+    import Cookies from 'js-cookie';
     import util from '../../../libs/util.js'
     var qs = require('qs');
     export default {
@@ -241,6 +242,9 @@
                         let formdate = this.formItem;
                         formdate.old = this.oldUsername;
                         let url = 'addAgentAppRegister.asp';
+                        if (Cookies.get('access') == '2'){
+                            url = 'addAgentAppRegisterByCount.asp?rows=' + _this.alldata.length;
+                        }
                         if (this.state == '修改用户'){
                             url = 'updateAppRegister.asp';
                         }
@@ -269,6 +273,8 @@
                                 _this.$Message.error('保存出错');
                             }else if (response.data == 'fault'){
                                 _this.$Message.info('不能由高版本改为低版本');
+                            }else if (response.data == 'countnotenough'){
+                                _this.$Message.info('您的点数不足');
                             }
                         })
                         

@@ -84,30 +84,39 @@ export default {
                         return;
                     }
                     let _this = this;
-                    util.ajax.get('agentMain.asp?userid='+this.form.userName+'&pwd='+
+                    util.ajax.get('agentMain0530.asp?userid='+this.form.userName+'&pwd='+
                     this.form.password)
                     .then(function(response){
-                        if(response.data == 'success'){
+                        if(response.data != 'error'){
                             let inFifteenMinutes = new Date(new Date().getTime() + 15 * 60 * 1000);
                             Cookies.set('agent', _this.form.userName, {
                                             expires: inFifteenMinutes
-                                        });
+                                        })
                             Cookies.set('password', _this.form.password, {
                                             expires: inFifteenMinutes
                                         });
                             _this.$store.commit('setAvator', 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3448484253,3685836170&fm=27&gp=0.jpg');
-                            if (_this.form.userName === 'iview_admin') {
+                            if (response.data === '内部用户') {//内部用户则显示客户远程信息
                                 Cookies.set('access', 0, {
                                             expires: inFifteenMinutes
                                         });
-                            } else {
+                                        _this.$router.push({
+                                name: 'home_index'
+                            });
+                            } else if (response.data === '合作伙伴'){
                                 Cookies.set('access', 1, {
                                             expires: inFifteenMinutes
                                         });
-                            }
-                            _this.$router.push({
+                                        _this.$router.push({
                                 name: 'home_index'
                             });
+                            } else if(response.data === '分销用户'){
+                                Cookies.set('access', 2, {
+                                            expires: inFifteenMinutes
+                                        });
+                                        _this.$router.push('/business/agentAppRegister');
+                            }
+                            
                         }else{
                             _this.$Message.info('用户名或密码错误');
                             _this.createCode();

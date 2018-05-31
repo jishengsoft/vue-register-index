@@ -62,6 +62,17 @@ export const locking = {
 
 export const appRouter = [
     // {
+    //     path: '/access-test',
+    //     icon: 'lock-combination',
+    //     title: '权限测试页',
+    //     name: 'accesstest',
+    //     component: Main,
+    //     children: [
+    //         { path: 'index', title: '权限测试页', name: 'accesstest_index', icon:'android-list',
+    //         component: resolve => { require(['./views/access/access.vue'], resolve); } },
+    //     ]
+    // },
+    // {
     //     path: '/systemInfo',
         
     //     icon: 'navicon-round',
@@ -99,18 +110,36 @@ export const appRouter = [
             // component: resolve => { require(['./views/business/appRegister/appRegister.vue'], resolve); } },
             // { path: 'service', title: '客服管理', name: 'service', icon:'social-whatsapp',
             // component: resolve => { require(['./views/business/mainagentQQ/mainagentQQ.vue'], resolve); } },
-            { path: 'softContinue', title: '软件续期', name: 'softContinue', icon:'android-list',
+            { path: 'softContinue', title: '软件续期', name: 'softContinue', icon:'android-list',access:0,
             component: resolve => { require(['./views/business/softContinue/softContinue.vue'], resolve); } },
-            { path: 'enroll', title: '软件注册', name: 'enroll', icon:'edit',
+            { path: 'softContinue', title: '软件续期', name: 'softContinue', icon:'android-list',access:1,
+            component: resolve => { require(['./views/business/softContinue/softContinue.vue'], resolve); } },
+
+            { path: 'enroll', title: '软件注册', name: 'enroll', icon:'edit',access:0,
             component: resolve => { require(['./views/business/enroll/enroll.vue'], resolve); } },
-            { path: 'softDog', title: '购买空狗', name: 'softDog', icon:'usb',
+            { path: 'enroll', title: '软件注册', name: 'enroll', icon:'edit',access:1,
+            component: resolve => { require(['./views/business/enroll/enroll.vue'], resolve); } },
+            
+
+            { path: 'softDog', title: '购买空狗', name: 'softDog', icon:'usb',access:0,
             component: resolve => { require(['./views/business/softDog/softDog.vue'], resolve); } },
+            { path: 'softDog', title: '购买空狗', name: 'softDog', icon:'usb',access:1,
+            component: resolve => { require(['./views/business/softDog/softDog.vue'], resolve); } },
+
             { path: 'agentAppRegister', title: 'APP注册管理', name: 'agentAppRegister', icon:'android-apps',
             component: resolve => { require(['./views/business/agentAppRegister/agentAppRegister.vue'], resolve); } },
-            { path: 'services', title: '客服管理', name: 'services', icon:'android-person',
+
+            { path: 'services', title: '客服管理', name: 'services', icon:'android-person',access:0,
             component: resolve => { require(['./views/business/agentQQ/agentQQ.vue'], resolve); } },
-            { path: 'trial', title: '软件试用', name: 'trial', icon:'ios-clock-outline',
+            { path: 'services', title: '客服管理', name: 'services', icon:'android-person',access:1,
+            component: resolve => { require(['./views/business/agentQQ/agentQQ.vue'], resolve); } },
+            
+
+            { path: 'trial', title: '软件试用', name: 'trial', icon:'ios-clock-outline',access:0,
             component: resolve => { require(['./views/business/trial/trial.vue'], resolve); } },
+            { path: 'trial', title: '软件试用', name: 'trial', icon:'ios-clock-outline',access:1,
+            component: resolve => { require(['./views/business/trial/trial.vue'], resolve); } },
+            
         ]
     },
     {
@@ -125,11 +154,19 @@ export const appRouter = [
             // component: resolve => { require(['./views/report/chargeQuery/chargeQuery.vue'], resolve); } },
             // { path: 'registerQuery', title: '注册查询', name: 'registerQuery', icon:'arrow-graph-down-right',
             // component: resolve => { require(['./views/report/registerQuery/registerQuery.vue'], resolve); } },
-            { path: 'balanceQuery', title: '余额查询', name: 'balanceQuery',icon:'social-yen', 
+            { path: 'balanceQuery', title: '余额查询', name: 'balanceQuery',icon:'social-yen',access:0,
             component: resolve => { require(['./views/report/balanceQuery/balanceQuery.vue'], resolve); } },
-            { path: 'recordQuery', title: '注册记录查询', name: 'recordQuery',icon:'ios-search', 
+            { path: 'balanceQuery', title: '余额查询', name: 'balanceQuery',icon:'social-yen',access:1,
+            component: resolve => { require(['./views/report/balanceQuery/balanceQuery.vue'], resolve); } },
+
+            { path: 'recordQuery', title: '注册记录查询', name: 'recordQuery',icon:'ios-search', access:0,
             component: resolve => { require(['./views/report/recordQuery/recordQuery.vue'], resolve); } },
-            { path: 'softEndQuery', title: '软件到期查询', name: 'softEndQuery', icon:'android-alarm-clock',
+            { path: 'recordQuery', title: '注册记录查询', name: 'recordQuery',icon:'ios-search', access:1,
+            component: resolve => { require(['./views/report/recordQuery/recordQuery.vue'], resolve); } },
+
+            { path: 'softEndQuery', title: '软件到期查询', name: 'softEndQuery', icon:'android-alarm-clock',access:0,
+            component: resolve => { require(['./views/report/softEndQuery/softEndQuery.vue'], resolve); } },
+            { path: 'softEndQuery', title: '软件到期查询', name: 'softEndQuery', icon:'android-alarm-clock',access:1,
             component: resolve => { require(['./views/report/softEndQuery/softEndQuery.vue'], resolve); } },
             // { path: 'dogEndQuery', title: '加密狗到期查询', name: 'dogEndQuery', icon:'clock',
             //  component: resolve => { require(['./views/report/dogExpire/dogExpire.vue'], resolve); } },
@@ -137,10 +174,9 @@ export const appRouter = [
             // component: resolve => { require(['./views/report/buyDogQuery/buyDogQuery.vue'], resolve); } },
             // { path: 'accountChecking', title: '对账单', name: 'accountChecking',icon:'checkmark-circled', 
             // component: resolve => { require(['./views/report/accountChecking/accountChecking.vue'], resolve); } },
-            // { path: 'remoteInformation', title: '客户远程信息', name: 'remoteInformation', icon:'ios-cloud',
-            // component: resolve => { require(['./views/report/remoteInformation/remoteInformation.vue'], resolve); } },
-            // { path: 'trialQuery', title: '试用版注册查询', name: 'trialQuery',icon:'ios-pulse', 
-            // component: resolve => { require(['./views/report/trialQuery/trialQuery.vue'], resolve); } },
+            { path: 'remoteInformation', title: '客户远程信息', name: 'remoteInformation', icon:'ios-cloud',access:0,
+            component: resolve => { require(['./views/report/remoteInformation/remoteInformation.vue'], resolve); } },
+            { path: '', title: ''},
         ]
     },
     
