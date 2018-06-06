@@ -275,6 +275,8 @@
                                 _this.$Message.info('不能由高版本改为低版本');
                             }else if (response.data == 'countnotenough'){
                                 _this.$Message.info('您的点数不足');
+                            }else if (response.data == 'nouser'){
+                                _this.$Message.info('用户名不存在');
                             }
                         })
                         

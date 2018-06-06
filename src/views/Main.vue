@@ -134,7 +134,7 @@
                 if (pathArr.length >= 2) {
                     this.$store.commit('addOpenSubmenu', pathArr[1].name);
                 }
-                this.userName = Cookies.get('user');
+                this.userName = Cookies.get('agent');
                 let messageCount = 3;
                 this.messageCount = messageCount.toString();
             },
@@ -146,7 +146,7 @@
                     util.openPage(this, 'ownspace_index', '个人中心');
                 } else if (name === 'loginout') {
                     // 退出登录
-                    Cookies.remove('user');
+                    Cookies.remove('agent');
                     Cookies.remove('password');
                     Cookies.remove('hasGreet');
                     Cookies.remove('access');
@@ -164,9 +164,7 @@
                     if (theme) {
                         localStorage.theme = theme;
                     }
-                    this.$router.push({
-                        name: 'login'
-                    });
+                    this.$router.go('/login');
                 }
             },
             handleFullScreen () {
@@ -261,7 +259,7 @@
                     title: '',
                     words: ''
                 };
-                let userName = Cookies.get('user');
+                let userName = Cookies.get('agent');
                 if (hour < 6) {
                     greetingWord = {title: '凌晨好~' + userName, words: '早起的鸟儿有虫吃~'};
                 } else if (hour >= 6 && hour < 9) {
@@ -295,7 +293,7 @@
             // 权限菜单过滤相关
             this.$store.commit('updateMenulist');
             // 查找当前用户之前登录时设置的主题
-            let name = Cookies.get('user');
+            let name = Cookies.get('agent');
             if (localStorage.theme) {
                 let hasThisUser = JSON.parse(localStorage.theme).some(item => {
                     if (item.userName === name) {

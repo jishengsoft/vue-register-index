@@ -1,4 +1,5 @@
 import Main from './views/Main.vue';
+import Cookies from 'js-cookie';
 
 export const loginRouter = {
     path: '/login',
@@ -61,17 +62,18 @@ export const locking = {
 };
 
 export const appRouter = [
-    // {
-    //     path: '/access-test',
-    //     icon: 'lock-combination',
-    //     title: '权限测试页',
-    //     name: 'accesstest',
-    //     component: Main,
-    //     children: [
-    //         { path: 'index', title: '权限测试页', name: 'accesstest_index', icon:'android-list',
-    //         component: resolve => { require(['./views/access/access.vue'], resolve); } },
-    //     ]
-    // },
+    {
+        path: '',
+        icon: 'android-apps',
+        title: 'APP注册管理',
+        access: 2,
+        name: 'agentAppRegister',
+        component: Main,
+        children: [
+            { path: 'agentAppRegister', title: 'APP注册管理', name: 'agentAppRegister', icon:'android-apps',
+            component: resolve => { require(['./views/business/agentAppRegister/agentAppRegister.vue'], resolve); } },
+        ]
+    },
     // {
     //     path: '/systemInfo',
         
@@ -96,6 +98,7 @@ export const appRouter = [
         icon: 'social-windows',
         name: 'business',
         title: '功能',
+        access:Cookies.get('access')==2?0:Cookies.get('access'),
         component: Main,
         children: [
             // { path: 'deliver', title: '发空狗', name: 'deliver', icon:'locked',
@@ -126,7 +129,9 @@ export const appRouter = [
             { path: 'softDog', title: '购买空狗', name: 'softDog', icon:'usb',access:1,
             component: resolve => { require(['./views/business/softDog/softDog.vue'], resolve); } },
 
-            { path: 'agentAppRegister', title: 'APP注册管理', name: 'agentAppRegister', icon:'android-apps',
+            { path: 'agentAppRegister', title: 'APP注册管理', name: 'agentAppRegister', icon:'android-apps',access:0,
+            component: resolve => { require(['./views/business/agentAppRegister/agentAppRegister.vue'], resolve); } },
+            { path: 'agentAppRegister', title: 'APP注册管理', name: 'agentAppRegister', icon:'android-apps',access:1,
             component: resolve => { require(['./views/business/agentAppRegister/agentAppRegister.vue'], resolve); } },
 
             { path: 'services', title: '客服管理', name: 'services', icon:'android-person',access:0,
@@ -148,6 +153,7 @@ export const appRouter = [
         icon: 'connection-bars',
         name: 'report',
         title: '查询',
+        access:Cookies.get('access')==2?0:Cookies.get('access'),
         component: Main,
         children: [
             // { path: 'chargeQuery', title: '充值查询', name: 'chargeQuery', icon:'arrow-graph-up-right',

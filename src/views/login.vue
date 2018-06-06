@@ -114,7 +114,10 @@ export default {
                                 Cookies.set('access', 2, {
                                             expires: inFifteenMinutes
                                         });
-                                        _this.$router.push('/business/agentAppRegister');
+                                        _this.$router.push({
+                                name: 'home_index'
+                            });
+                            window.location.href='';
                             }
                             
                         }else{
