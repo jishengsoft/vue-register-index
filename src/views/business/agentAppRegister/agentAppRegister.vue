@@ -190,7 +190,7 @@ export default {
     },
     getCompanyList() {
       let _this = this;
-      if (Cookies.get("agent") == "2") {
+      if (Cookies.get("access") == "2") {
         util.ajax.get("getCompanyDistribution.asp").then(function(response) {
           _this.companyList = response.data;
         });
